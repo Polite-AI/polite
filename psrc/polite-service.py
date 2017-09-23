@@ -3,8 +3,9 @@ import urllib
 import os, sys
 import json
 
-from learning_helpers import load_pipeline
 
+
+from learning_helpers import make_mlp, load_pipeline, DenseTransformer
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 
@@ -22,9 +23,9 @@ from flask import Flask, request, abort
 
 def check(input):
         return({
-            "aggression" : 1, # aggression.predict(input)[0],
-            "attack" : 0, #attack.predict(input)[0],
-            "toxicity" : 1 #toxicity.predict(input)[0]
+            "aggression" : aggression.predict([input])[0].astype(str),
+            "attack" : attack.predict([input])[0].astype(str),
+            "toxicity" : toxicity.predict([input])[0].astype(str)
         })
 
 
@@ -35,9 +36,9 @@ def check(input):
 #    })
 
 
-#aggression = load_pipeline('models', 'model-new-aggression')
-#attack = load_pipeline('models', 'model-new-attack')
-#toxicity = load_pipeline('models', 'model-new-toxicity')
+aggression = load_pipeline('models', 'model-aggression')
+attack = load_pipeline('models', 'model-attack')
+toxicity = load_pipeline('models', 'model-toxicity')
 
 app = Flask(__name__)
 

@@ -15,6 +15,7 @@ from sklearn.base import TransformerMixin, BaseEstimator
 
 
 tasks = [ 'attack', 'aggression', 'toxicity' ]
+tasks = [ 'attack' ]
 for task in tasks:
     X, y = parse_training_data('models', task)
 

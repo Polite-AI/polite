@@ -82,6 +82,7 @@ def load_keras_pipeline(directory, name):
     pipeline = joblib.load(os.path.join(directory, '%s_extractor.pkl' % name))
     pipeline.steps[-1][1].model = model
     return pipeline
+
 def save_pipeline(pipeline, directory, name):
 
     clf = pipeline.steps[-1][1]
