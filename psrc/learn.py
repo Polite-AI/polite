@@ -12,11 +12,15 @@ from sklearn.metrics import roc_auc_score
 from keras.wrappers.scikit_learn import KerasClassifier
 from sklearn.base import TransformerMixin, BaseEstimator
 
+import argparse
+
+parser = argparse.ArgumentParser(description='Build models')
+parser.add_argument('tasks', metavar='task', type=str, nargs='+',
+                   help='Model name to build')
+args = parser.parse_args()
 
 
-tasks = [ 'attack', 'aggression', 'toxicity' ]
-tasks = [ 'attack' ]
-for task in tasks:
+for task in args.tasks:
     X, y = parse_training_data('models', task)
 
     label_type = 'ed'
