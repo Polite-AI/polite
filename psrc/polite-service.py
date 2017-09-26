@@ -20,6 +20,13 @@ from keras.regularizers import l2
 
 from flask import Flask, request, abort
 
+print ('loading models...')
+aggression = load_pipeline('models', 'model-aggression')
+print ('ageression...')
+attack = load_pipeline('models', 'model-attack')
+print ('attack...')
+toxicity = load_pipeline('models', 'model-toxicity')
+print ('toxicity... Done!')
 
 def check(input):
         return({
@@ -28,17 +35,6 @@ def check(input):
             "toxicity" : toxicity.predict([input])[0].astype(str)
         })
 
-
-#    return({
-#        "aggression" : aggression.predict(input)[0],
-#        "attack" : attack.predict(input)[0],
-#        "toxicity" : toxicity.predict(input)[0]
-#    })
-
-
-aggression = load_pipeline('models', 'model-aggression')
-attack = load_pipeline('models', 'model-attack')
-toxicity = load_pipeline('models', 'model-toxicity')
 
 app = Flask(__name__)
 
