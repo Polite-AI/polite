@@ -1,3 +1,7 @@
+# Much of this file is lifted verbatim from the wiki-detox project to get us started
+# although I have murdered a lot of it along the way for which I massively appologise.
+# Needs a proper tidy up if we ever get past hackathon output stage, but may get left
+# we have our own corpus to work on.
 import pandas as pd
 import os, sys
 import keras
